@@ -29,7 +29,7 @@
   <a href="README.md">English</a> | <a href="README.zh-CN.md">中文</a>
 </p>
 
-> **维护状态（2026-11-19 起）。** 原作者 [YuJunZhiXue](https://github.com/YuJunZhiXue) 因工作安排暂停维护并计划删库；本仓是**继续维护 fork**：经 [mmparko/dsh-purge](https://github.com/mmparko/dsh-purge) 全量镜像保留完整历史（全部分支 / 73 个 tag / 原提交记录），由 [@webkubor](https://github.com/webkubor) 接手维护。名称、思路、代码与提示词的一切权利与署名**仍归原作者**；[署名要求](#署名要求)与非盈利条款继续沿用，见下。上游删库后，本仓与镜像仓是官方存档入口。
+> **维护状态（2026-11-19 起）。** 原作者 [YuJunZhiXue](https://github.com/YuJunZhiXue) 因工作安排暂停维护并计划删库；本仓是**继续维护 fork**：经 [mmparko/dsh-purge](https://github.com/mmparko/dsh-purge) 全量镜像保留完整历史（全部分支 / 73 个 tag / 原提交记录），由 [@webkubor](https://github.com/webkubor) 接手维护。名称、思路、代码与提示词的一切权利与署名**仍归原作者**；[署名要求](#署名要求)与非盈利条款继续沿用，见下。上游删库后，本仓与镜像仓是官方存档入口。**维护重点：macOS 上手体验**——让没碰过命令行的人也能照抄装上，见安装区的「macOS 小白上手」。
 
 > **官方 Web 和官方桌面端都支持。** 官方 `dsh web` 用 profile `web`；官方桌面 EXE（DeepSeek Harness **0.2.0-rc.2**）用 profile `desktop`。两边分开安装、分开点「应用」。当前版本只适配 dsh 0.2；更早的 dsh 用对应的老版本插件。社区桌面端不维护。
 >
@@ -172,6 +172,41 @@ Harness 不只是把问题交给模型。它还会在运行时改提示词、审
 ---
 
 ## 安装
+
+### 🍎 macOS 小白上手（照抄三步）
+
+> 写给没折腾过命令行的同学：全程复制粘贴，5 分钟。Mac 走 `dsh web` 通道（Windows 桌面端见下文）。
+
+**第 0 步 · 确认 dsh 在不在** —— 打开「终端」，粘贴回车：
+
+```sh
+dsh --version
+```
+
+出了版本号就进第 1 步。提示 `command not found` 就先装 dsh（要 Node **≥18**）：
+
+```sh
+brew install node    # 已有 node --version ≥18 的跳过这行
+npm install -g @deepseek-ai/dsh
+```
+
+**第 1 步 · 装插件** —— 复制整行：
+
+```sh
+dsh plugin --profile web add https://github.com/webkubor/dsh-purge/archive/refs/heads/master.tar.gz
+```
+
+看到 `+ dsh-purge 1.1.71` 和 `Done` 就是装上了。
+
+**第 2 步 · 重启 `dsh web`** —— 跑着的先 `Ctrl+C` 关掉，再 `dsh web` 打开。
+
+**第 3 步 · 点「应用」** —— 浏览器里随便开个会话，**会话标题旁**多了 **dsh-purge** 按钮 → 点开 → **清洗** 页 → 点 **「应用」** → 自动重启后生效。
+
+**验收**：聊天里发 `/purge status`，能打出 `DSH_HOME` 和补丁列表就是成功。卡住了就把下面「[交给助手安装](#交给助手安装)」整段发给本机助手代装。
+
+---
+
+以下为通用安装（Web / 官方桌面端分开装）。
 
 现在只维护官方 `dsh web` 和官方桌面 EXE，**两边都要装、分开应用**。Web 的包进不了桌面端，桌面端的包也进不了 Web。
 

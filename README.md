@@ -29,7 +29,7 @@
   <a href="README.md">English</a> | <a href="README.zh-CN.md">中文</a>
 </p>
 
-> **Maintenance status (since 2026-11-19).** Original author [YuJunZhiXue](https://github.com/YuJunZhiXue) paused maintenance and plans to delete the upstream repo. This is the **maintained fork**: full history (all branches / 73 tags / original commits) preserved via the [mmparko/dsh-purge](https://github.com/mmparko/dsh-purge) mirror, now maintained by [@webkubor](https://github.com/webkubor). All rights and attribution for the name, idea, code, and prompts **remain with the original author**; the [Attribution required](#attribution-required) terms and the non-profit clause continue to apply. After the upstream deletion, this repo and the mirror are the official archives.
+> **Maintenance status (since 2026-11-19).** Original author [YuJunZhiXue](https://github.com/YuJunZhiXue) paused maintenance and plans to delete the upstream repo. This is the **maintained fork**: full history (all branches / 73 tags / original commits) preserved via the [mmparko/dsh-purge](https://github.com/mmparko/dsh-purge) mirror, now maintained by [@webkubor](https://github.com/webkubor). All rights and attribution for the name, idea, code, and prompts **remain with the original author**; the [Attribution required](#attribution-required) terms and the non-profit clause continue to apply. After the upstream deletion, this repo and the mirror are the official archives. **Maintenance focus: the macOS onboarding experience** — installable by copy & paste even with zero terminal experience, see "macOS quick start" under Install.
 
 > **Official Web and the official desktop app are both supported.** Official `dsh web` uses profile `web`. The official desktop EXE (DeepSeek Harness **0.2.0-rc.2**) uses profile `desktop`. Install and Apply them separately. This release targets dsh 0.2 only. Older dsh builds need the matching older plugin. Community Desktop is not maintained.
 >
@@ -172,6 +172,41 @@ Unmatched patches stay pending or skipped; nothing is rewritten blindly.
 ---
 
 ## Install
+
+### 🍎 macOS quick start (three steps, copy & paste)
+
+> For folks who have never touched a terminal: copy, paste, 5 minutes. On Mac use the `dsh web` channel (Windows desktop, see below).
+
+**Step 0 · Check dsh** — open Terminal, paste:
+
+```sh
+dsh --version
+```
+
+If a version prints, go to Step 1. If `command not found`, install dsh first (Node **≥18** required):
+
+```sh
+brew install node    # skip if node --version is already ≥18
+npm install -g @deepseek-ai/dsh
+```
+
+**Step 1 · Install the plugin** — copy the whole line:
+
+```sh
+dsh plugin --profile web add https://github.com/webkubor/dsh-purge/archive/refs/heads/master.tar.gz
+```
+
+Seeing `+ dsh-purge 1.1.71` and `Done` means it is installed.
+
+**Step 2 · Restart `dsh web`** — stop the running one with `Ctrl+C`, then start `dsh web` again.
+
+**Step 3 · Click Apply** — open any chat in the browser; a **dsh-purge** button appears **beside the session title** → open it → **Clean** tab → click **Apply** → it restarts and takes effect.
+
+**Verify**: type `/purge status` in chat; printing `DSH_HOME` and the patch list means success. Stuck? Paste the "[For AI assistants](#for-ai-assistants-install-only)" block below to your local assistant.
+
+---
+
+General install (Web and official desktop are separate).
 
 Web and the official desktop EXE are the two maintained hosts. **Install both. Apply each separately.** A Web install does not reach the desktop app, and a desktop install does not reach Web.
 
